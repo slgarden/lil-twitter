@@ -8,4 +8,9 @@ class User < ActiveRecord::Base
   has_many :idol_relationships, class_name: "Relationship", foreign_key: "idol_id"
 
   has_many :idols, class_name: "User", through: :idol_relationships
+
+  def authenticate(input_password)
+    self.password == input_password
+  end
+
 end
