@@ -1,3 +1,5 @@
 <p>This is the main page</p>
 <p><%= erb :_users, locals: { all_users: @users, current_user: @current_user } %></p>
-<p><a href="/logout">Logout</a> </p>
+<p><button type="button"><a href="/logout">Logout</a></button></p>
+<p><%= erb :new_tweet %></p>
+<p><%= erb :tweets, locals: { tweets: @tweets_to_include, current_user: @current_user } %></p>
