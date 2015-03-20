@@ -1,5 +1,9 @@
 get '/' do
-  erb :welcome
+  if session[:user_id]
+    redirect '/main'
+  else
+    erb :welcome
+  end
 end
 
 get '/login' do
@@ -39,7 +43,13 @@ end
 get '/main' do
   @users = User.all
   @current_user = User.find(session[:user_id])
+  @tweets_to_include = @current_user.tweets + Tweet.where(user: @current_user.idols)
   erb :main
+end
+
+get '/users/:id' do
+  @user = User.find(params[:id])
+  erb :profile
 end
 
 get '/follow/:id' do
@@ -57,4 +67,8 @@ get '/unfollow/:id' do
   redirect '/main'
 end
 
-
+post '/tweets' do
+  current_user = User.find(session[:user_id])
+  current_user.tweets.create(content: params[:content])
+  redirect '/main'
+end
