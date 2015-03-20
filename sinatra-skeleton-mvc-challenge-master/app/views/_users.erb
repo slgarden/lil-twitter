@@ -1,8 +1,8 @@
 <% all_users.each do |user| %>
   <%= user.username %>
   <% if current_user.idols.include?(user) %>
-    <%= erb :_unfollow, locals: { user: user, current_user: current_user } %>
+    <%= erb :_unfollow, locals: { user: user } %>
   <% else %>
-    <%= erb :_follow, locals: { user: user, current_user: current_user } %>
+    <%= erb :_follow, locals: { user: user } %>
   <% end %>
 <% end %>

@@ -1,5 +1,3 @@
-
-
 get '/' do
   erb :welcome
 end
@@ -17,6 +15,11 @@ post '/login' do
   else
     erb :login
   end
+end
+
+get '/logout' do
+  session[:user_id] = nil
+  redirect '/'
 end
 
 get '/register' do
@@ -41,17 +44,16 @@ end
 
 get '/follow/:id' do
   user = User.find(params[:id])
-  @current_user = User.find(session[:user_id])
-  @current_user.idols << user
-  @current_user.save
+  current_user = User.find(session[:user_id])
+  relationship = Relationship.create(idol_id: user.id, fan_id: current_user.id)
   redirect '/main'
 end
 
 get '/unfollow/:id' do
   user = User.find(params[:id])
-  @current_user = User.find(session[:user_id])
-  @current_user.idols.delete(user)
-  @current_user.save
+  current_user = User.find(session[:user_id])
+  relationship = Relationship.where(idol_id: user.id, fan_id: current_user.id).first
+  relationship.delete
   redirect '/main'
 end
 
