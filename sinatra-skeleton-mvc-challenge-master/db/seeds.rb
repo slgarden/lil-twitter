@@ -41,7 +41,7 @@ users.each do |user|
 end
 
 
-num_users = User.all.count
+# Create Relationships
 
 5.times do |counter|
   Relationship.create(fan_id: User.find(counter + 2).id, idol_id: User.find(counter + 1).id )

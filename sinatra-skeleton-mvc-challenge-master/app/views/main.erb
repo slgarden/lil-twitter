@@ -1,2 +1,3 @@
-<!-- main.erb
- -->
+<p>This is the main page</p>
+<p><%= erb :_users, locals: { all_users: @users, current_user: @current_user } %></p>
+
