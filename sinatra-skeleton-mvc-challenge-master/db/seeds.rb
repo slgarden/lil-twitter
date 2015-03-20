@@ -40,7 +40,6 @@ users.each do |user|
               password: user[:password])
 end
 
-
 # Create Relationships
 
 5.times do |counter|
