@@ -1,2 +1,1 @@
-# lil-twitter
-'Lil Twitter
+Mock version of Twitter
